@@ -1,0 +1,64 @@
+﻿@model Movies.Movie
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Movie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDMovie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDMovie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseYear)
+        </dd>
+
+        <dt>
+            @Html.ActionLink("Actors", "Index", "Actor", new { id = Model.IDMovie }, null)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Actors.Count)
+        </dd>
+
+
+        @foreach (var uploadedFile in Model.UploadedFiles)
+        {
+            <dt>
+                @uploadedFile.Name
+            </dt>
+
+            <dd style="margin-top:10px">
+                <img src="~/File?id=@uploadedFile.IDUploadedFile" alt="picture" width="300" height="200" />
+            </dd>
+        }
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDMovie }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
